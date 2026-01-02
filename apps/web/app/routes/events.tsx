@@ -1,10 +1,18 @@
-import { Divider, Heading } from '../components';
+import { Outlet, useLocation } from 'react-router';
+import { Button, Divider, Heading } from '../components';
 
-export default function Events() {
+export default function EventsLayout() {
+  const { pathname } = useLocation();
+  const isAddingEvent = pathname === '/events/new';
+
   return (
     <>
-      <Heading>Events</Heading>
+      <div className="flex items-center justify-between">
+        <Heading>Events</Heading>
+        {!isAddingEvent && <Button href="/events/new">Add Event</Button>}
+      </div>
       <Divider className="mt-4" />
+      <Outlet />
     </>
   );
 }

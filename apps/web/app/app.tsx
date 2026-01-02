@@ -14,6 +14,7 @@ import {
   TicketIcon,
 } from '@heroicons/react/20/solid';
 import { Outlet, useLocation } from 'react-router';
+import { EventsProvider } from './context/events-context';
 import {
   Avatar,
   Dropdown,
@@ -70,7 +71,8 @@ export function App() {
   const { pathname } = useLocation();
 
   return (
-    <SidebarLayout
+    <EventsProvider>
+      <SidebarLayout
       navbar={
         <Navbar>
           <NavbarSpacer />
@@ -161,9 +163,10 @@ export function App() {
           </SidebarFooter>
         </Sidebar>
       }
-    >
-      <Outlet />
-    </SidebarLayout>
+      >
+        <Outlet />
+      </SidebarLayout>
+    </EventsProvider>
   );
 }
 
